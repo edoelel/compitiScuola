@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Esercizio 18 – CSS display con select e bottone</title>
+</head>
+<body>
+
+  <h2>Esercizio 18 – Proprietà CSS <code>display</code></h2>
+
+  <p>Seleziona un valore e premi il bottone:</p>
+
+  <select id="scelta" size="4">
+    <option value="inline">inline</option>
+    <option value="inline-block" selected>inline-block</option>
+    <option value="block">block</option>
+    <option value="none">none</option>
+  </select>
+
+  <br><br>
+
+  <button onclick="cambia()">Applica</button>
+
+  <br><br>
+
+  <div id="b1">BOX 1</div>
+  <div id="b2">BOX 2</div>
+  <div id="b3">BOX 3</div>
+
+  <script>
+    function cambia() {
+      var valore = document.getElementById("scelta").value;
+      document.getElementById("b1").style.display = valore;
+      document.getElementById("b2").style.display = valore;
+      document.getElementById("b3").style.display = valore;
+    }
+
+    cambia();
+  </script>
+
+</body>
+</html>

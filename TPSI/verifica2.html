@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTC-8">
+    <title>FILA B</title>
+</head>
+
+<body>
+    <div>
+        <h1 id="testo">HU</h1>
+    </div>
+    <label>
+        <input type="radio" name="font" value="Arial">Arial
+    </label>
+    <label><br>
+        <input type="radio" name="font" value="Garamond">Garamond
+    </label>
+    <label><br>
+        <input type="radio" name="font" value="Georgia">Georgia
+    </label><br>
+    <button onclick="applicaStyle()">Applica dimensione</button>
+    <label><br>
+        <input type="checkbox" id="chkLat">Left
+    </label>
+    <label><br>
+        <input type="checkbox" id="chkRig">Right
+    </label>
+    <label><br>
+        <input type="checkbox" id="chkTop">Top
+    </label>
+    <label><br>
+        <input type="checkbox" id="chkBot">Bottom
+    </label><br>
+    <button onclick="applicaStile()">Applica dimensione</button><br>
+    <label for="font">Scegli una dimensione</label>
+    <select id="font">
+        <option value="">--Selezionare la dimensione--</option>
+        <option value="4px">4px</option>
+        <option value="8px">8px</option>
+        <option value="12px">12px</option>
+    </select>
+    <script>
+        function applicaStyle() {
+            const selezionato = document.querySelector('input[name="font"]:checked');
+            if (selezionato) {
+                document.getElementById("testo").style.fontFamily = selezionato.value;
+            } else {
+                alert("!!!");
+            }
+        }
+        function applicaStile() {
+            const testo = document.getElementById("testo");
+            let value = "";
+            if (document.getElementById) (chkLat).checked
+            {
+                value = "solid";
+            }
+            testo.style.border = value;
+        }
+
+    </script>
+</body>
+
+</html>

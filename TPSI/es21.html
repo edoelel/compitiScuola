@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Esercizio Dinamico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            padding: 20px;
+        }
+
+        .input-area {
+            width: 40%;
+            padding-right: 20px;
+            border-right: 1px solid #ddd;
+        }
+
+        .output-area {
+            width: 60%;
+            margin-left: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 300px;
+            background-color: #f9f9f9;
+        }
+
+        .entry {
+            padding: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+        }
+
+        .entry:nth-child(even) {
+            background-color: black;
+            color: white;
+        }
+
+        .entry:nth-child(odd) {
+            background-color: white;
+            color: black;
+            border: 1px solid #ddd;
+        }
+
+        .controls {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .btn-del {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+
+        .btn-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        #numRiga {
+            width: 60px;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="input-area">
+        <h2>Inserisci un testo</h2>
+
+        <label>Testo:</label>
+        <input type="text" id="userInput" style="width: 100%; padding: 8px;">
+
+        <label>Colore Sfondo:</label>
+        <select id="bgPicker">
+            <option value="transparent">Default (Alternato)</option>
+            <option value="#ffeb3b">Giallo</option>
+            <option value="#81c784">Verde</option>
+            <option value="#64b5f6">Blu</option>
+        </select>
+
+        <label>Colore Testo:</label>
+        <input type="radio" name="fgColor" value="black" checked> Nero
+        <input type="radio" name="fgColor" value="red"> Rosso
+        <input type="radio" name="fgColor" value="blue"> Blu
+
+        <label>Dimensione Font (px):</label>
+        <input type="number" id="fontSize" value="16" min="10" max="40">
+
+        <div class="btn-row">
+            <button onclick="aggiungiTesto()" style="padding: 10px 20px; cursor: pointer;">Aggiungi Elemento</button>
+            <button style="padding: 10px 20px; cursor: pointer;" onclick="cancellaTutto()">Cancella tutto</button>
+        </div>
+    </div>
+
+    <div class="output-area" id="output">
+        <h3>Elementi generati:</h3>
+    </div>
+
+    <script>
+        let contatore = 1;
+        const righe = {}; // mappa numero → div
+
+        function aggiungiTesto() {
+            const input = document.getElementById("userInput");
+            const output = document.getElementById("output");
+
+            const bgColor = document.getElementById("bgPicker").value;
+            const fgColor = document.querySelector('input[name="fgColor"]:checked').value;
+            const fSize = document.getElementById("fontSize").value;
+
+            if (input.value.trim() !== "") {
+                const div = document.createElement("div");
+                div.className = "entry";
+
+                if (bgColor !== "transparent") div.style.backgroundColor = bgColor;
+                div.style.color = fgColor;
+                div.style.fontSize = fSize + "px";
+
+                const testoContenuto = document.createElement("span");
+                testoContenuto.textContent = "[" + contatore + "] " + input.value;
+
+                const btnCancella = document.createElement("button");
+                btnCancella.textContent = "Elimina";
+                btnCancella.className = "btn-del";
+                const n = contatore;
+                btnCancella.onclick = function () {
+                    output.removeChild(div);
+                    delete righe[n];
+                };
+
+                div.appendChild(testoContenuto);
+                div.appendChild(btnCancella);
+                output.appendChild(div);
+
+                righe[contatore] = div;
+                input.value = "";
+                contatore++;
+            }
+        }
+
+
+        function cancellaTutto() {
+            let i; 
+            const output = document.getElementById("output");
+            for(i=1; i<contatore; i++){
+            output.removeChild(righe[i]);
+            delete righe[i];
+            }
+            contatore = 1;
+        }
+    </script>
+
+</body>
+
+</html>

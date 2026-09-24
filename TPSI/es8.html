@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <title>Scacchiera 2x2 Semplice</title>
+
+  <style>
+    table {
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    td {
+      width: 80px;
+      height: 80px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .light { background: #fff; color:#000; }
+    .dark  { background: #000; color:#fff; }
+
+    button {
+      margin: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body style="font-family:Arial; padding:20px;">
+
+  <h2>Scacchiera 2×2</h2>
+
+  <table id="board">
+    <tr>
+      <td class="light">A1</td>
+      <td class="dark">B1</td>
+    </tr>
+    <tr>
+      <td class="dark">A2</td>
+      <td class="light">B2</td>
+    </tr>
+  </table>
+
+  <p>Bersaglio: <span id="target-label">celle scure</span></p>
+
+  <!-- Bottoni con ID -->
+  <button id="btn-rosso"  data-color="#e11d48">Rosso</button>
+  <button id="btn-verde"  data-color="#059669">Verde</button>
+  <button id="btn-blu"    data-color="#2563eb">Blu</button>
+  <button id="btn-giallo" data-color="#f59e0b">Giallo</button>
+
+  <br><br>
+
+  <button id="swap">Inverti celle</button>
+  <button id="reset">Reset</button>
+
+  <script>
+    const cells = document.querySelectorAll("td");
+    const targetLabel = document.getElementById("target-label");
+
+    let target = "dark";
+
+    function applicaColore(hex) {
+      cells.forEach(c => {
+        if (c.classList.contains(target)) {
+          c.style.background = hex;
+          c.style.color = "#fff";
+        }
+      });
+    }
+
+    // Bottone rosso
+    document.getElementById("btn-rosso").onclick = () => {
+      applicaColore("#e11d48");
+    };
+
+    // Bottone verde
+    document.getElementById("btn-verde").onclick = () => {
+      applicaColore("#059669");
+    };
+
+    // Bottone blu
+    document.getElementById("btn-blu").onclick = () => {
+      applicaColore("#2563eb");
+    };
+
+    // Bottone giallo
+    document.getElementById("btn-giallo").onclick = () => {
+      applicaColore("#f59e0b");
+    };
+
+    // Inverti celle target
+    document.getElementById("swap").onclick = () => {
+      target = (target === "dark") ? "light" : "dark";
+      targetLabel.textContent = (target === "dark") ? "celle scure" : "celle chiare";
+    };
+
+    // Reset
+    document.getElementById("reset").onclick = () => {
+      cells.forEach(c => {
+        if (c.classList.contains("light")) {
+          c.style.background = "#fff";
+          c.style.color = "#000";
+        } else {
+          c.style.background = "#000";
+          c.style.color = "#fff";
+        }
+      });
+    };
+  </script>
+
+</body>
+</html>

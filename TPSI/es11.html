@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html utf8="utf-8"> 
+    <style>
+        #colore {
+            width: 300px;
+            height: 150px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-top: 1rem;
+        }
+        button {
+            margin-top: 10px;
+            border: 2px solid#333;
+            border-radius: 5px ;
+            padding: 5px 10px;
+        }
+        input
+        {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            font-size: 15px;
+            width: 130px;
+        }
+        input:focus+label {
+            transform: translateY(-20px);
+            color: blue;
+        }
+        input:focus {
+            outline-color: blue;
+        }
+    </style>
+    <head>
+        <title>Impostare colori ad un div tramite input numerico </title>
+    </head>
+    <body>
+        <div style="font-size: 27px; font-family: Arial, Helvetica, sans-serif; font-weight: 900;" >Impostare colori ad un div tramite input numerico </div>
+        <div id="colore">Testo che cambia colore</div>
+        <ul style="list-style-type:none;">
+            <li>0 = nero</li>
+            <li>1 = blu</li>
+            <li>2 = rosso</li>
+            <li>3 = verde</li>
+            <li>4 = giallo</li>
+        </ul>
+        <input type="number" id="numcolore" placeholder="Inserisci colore" min="0" max="4"/>
+        <button onclick="cambiaColore()">Cambia Colore</button>
+    <script>
+        function cambiaColore() {
+        const valore = parseInt(document.getElementById("numcolore").value, 10);
+        const numcolore = document.getElementById("colore");
+        switch (valore){
+            case 0 :
+                numcolore.style.backgroundColor = "black";
+                numcolore.style.color = "white"; 
+                break;
+            case 1 :
+                numcolore.style.backgroundColor = "blue";
+                numcolore.style.color = "white"; 
+                break;
+            case 2 :
+                numcolore.style.backgroundColor = "red";
+                numcolore.style.color = "white"; 
+                break;  
+            case 3 :
+                numcolore.style.backgroundColor = "green";
+                numcolore.style.color = "white"; 
+                break;
+            case 4 :
+                numcolore.style.backgroundColor = "yellow";
+                numcolore.style.color = "black"; 
+                break;
+            default:
+        }
+    }
+
+    </script>
+    </body>

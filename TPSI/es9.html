@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div>Testo di prova</div>
+        <button id="bold">bold</button>
+        <button id="lighter">lighter</button>
+        <button id="bolder">bolder</button>
+        <button id="normal">reset</button>
+    </body>
+    <script>
+        const div = document.querySelector("div");
+        document.getElementById("bold").onclick = () => {
+            div.style.fontWeight = "bold";
+        };
+        document.getElementById("lighter").onclick = () => {
+            div.style.fontWeight = "lighter";
+        };
+        document.getElementById("bolder").onclick = () => {
+            div.style.fontWeight = "bolder";
+        };
+        document.getElementById("normal").onclick = () => {
+            div.style.fontWeight = "normal";
+        };
+    </script>
+
+</html>

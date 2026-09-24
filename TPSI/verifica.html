@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body{
+            text-align: center;
+            font-size: 16px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        table{
+            overflow: hidden;
+            border-collapse:collapse;
+            border-radius: 5px;
+        }
+        tr, td{
+            border: 1px solid black;
+            height: 50px;
+            width: 70px;
+        }
+        input{
+            width: 200px;
+        }
+    </style>
+    <title>Verifica LAB TPSI</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="1">Cella 1</td>
+            <td id="2">Cella 2</td>
+        </tr>
+        <tr>
+            <td id="3">Cella 3</td>
+            <td id="4">Cella 4</td>
+        </tr>
+    </table>
+    <br>
+    <input id="numcella" type="number"
+    placeholder="Scegli la cella da 1 a 4" min="1" max="4"></input>
+    <button onclick="cambiafont()">Imposta carattere Arial</button>
+    <button onclick="cambiadimensione()">Imposta dimensione 20px</button>
+    <button onclick="cambiapeso()">Imposta grassetto</button>
+    <button onclick="reset()">Reset cella selezionata</button>
+    <script>
+        function cambiafont(){
+            const valore = parseInt (document.getElementById("numcella").value, 10);
+            //const numcella= document.getElementById("1");
+//alert(valore);
+        switch (valore){
+            case 1:
+numcella= document.getElementById("1");
+                numcella.style.fontFamily = "Arial, Helvetica, sans-serif";
+                break;
+            case 2:
+numcella= document.getElementById("2");
+                numcella.style.fontFamily = "Arial, Helvetica, sans-serif";
+                break;
+            case 3:
+numcella= document.getElementById("3");
+                numcella.style.fontFamily = "Arial, Helvetica, sans-serif";
+                break;
+            case 4:
+numcella= document.getElementById("4");
+                numcella.style.fontFamily = "Arial, Helvetica, sans-serif";
+                break;
+            default:
+
+        }
+}
+        function cambiadimensione(){
+            const valore = parseInt (document.getElementById("numcella").value, 10);
+           
+       
+
+        switch (valore){
+            case 1:
+numcella= document.getElementById("1");
+                numcella.style.fontSize = "24px";
+                break;
+            case 2:
+numcella= document.getElementById("2");
+                numcella.style.fontSize = "24px";
+                break;
+            case 3:
+numcella= document.getElementById("3");
+                numcella.style.fontSize = "24px";
+                break;
+            case 4:
+numcella= document.getElementById("4");
+                numcella.style.fontSize = "24px";
+                break;
+            default:
+
+        }
+}
+        function cambiapeso(){
+            const valore = parseInt (document.getElementById("numcella").value, 10);
+           
+       
+        switch (valore){
+            case 1:
+numcella= document.getElementById("1");
+                numcella.style.fontWeight = "bold";
+                break;
+            case 2:
+numcella= document.getElementById("2");
+                numcella.style.fontWeight = "bold";
+                break;
+            case 3:
+numcella= document.getElementById("3");
+                numcella.style.fontWeight = "bold";
+                break;
+            case 4:
+numcella= document.getElementById("4");
+                numcella.style.fontWeight = "bold";
+                break;
+            default:
+
+        }
+}
+        function reset(){
+            const valore = parseInt (document.getElementById("numcella").value, 10);
+           
+       
+        switch (valore){
+            case 1:
+numcella= document.getElementById("1");
+                numcella.style.fontWeight = "normal";
+                numcella.style.fontSize = "16px";
+                numcella.style.fontFamily = "'Times New Roman', Times, serif";
+                break;
+            case 2:
+numcella= document.getElementById("2");
+numcella.style.fontWeight = "normal";
+                numcella.style.fontSize = "16px";
+                numcella.style.fontFamily = "'Times New Roman', Times, serif";
+                break;
+            case 3:
+numcella= document.getElementById("3");
+numcella.style.fontWeight = "normal";
+                numcella.style.fontSize = "16px";
+                numcella.style.fontFamily = "'Times New Roman', Times, serif";
+                break;
+            case 4:
+numcella= document.getElementById("4");
+numcella.style.fontWeight = "normal";
+                numcella.style.fontSize = "16px";
+                numcella.style.fontFamily = "'Times New Roman', Times, serif";
+                break;
+            default:
+                break;
+           
+
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Cambia dimensione</title>
+<style>
+    .border-t { 
+        border-top: 3px solid black;
+    }
+    .border-r { 
+        border-right: 3px solid black; 
+    }
+    .border-b {
+        border-bottom: 3px solid black; 
+    }
+    .border-l { 
+        border-left: 3px solid black; 
+    }
+</style>
+</head>
+<body>
+
+<div id="testo">Testo da modificare</div>
+
+<input type="checkbox" id="leftBorder"> Bordo sinistra<br>
+<input type="checkbox" id="rightBorder"> Bordo destro<br>
+<input type="checkbox" id="underBorder"> Bordo bassa<br>
+<input type="checkbox" id="higherBorder"> Bordo alto<br>
+<br>
+
+<button onclick="cambiaStile()">Applica stile</button>
+
+
+<script>
+function cambiaStile() {
+    const testo = document.getElementById("testo");
+    testo.classList.toggle("border-t", document.getElementById("higherBorder").checked);
+    testo.classList.toggle("border-r", document.getElementById("rightBorder").checked);
+    testo.classList.toggle("border-b", document.getElementById("underBorder").checked);
+    testo.classList.toggle("border-l", document.getElementById("leftBorder").checked);
+}
+</script>
+
+</body>
+</html>

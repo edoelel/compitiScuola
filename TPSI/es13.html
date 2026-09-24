@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Cambia dimensione</title>
+</head>
+<body>
+
+<h1 id="testo">Testo di prova</h1>
+
+<h3>Scegli una dimensione:</h3>
+
+<label>
+<input type="radio" name="dim" value="12"> 12 px
+</label><br>
+
+<label>
+<input type="radio" name="dim" value="25"> 25 px
+</label><br>
+
+<label>
+<input type="radio" name="dim" value="40"> 40 px
+</label><br>
+
+<label>
+<input type="radio" name="dim" value="60"> 60 px
+</label><br><br>
+
+<button onclick="applicaDimensione()">Applica colore</button>
+
+<script>
+function applicaDimensione() {
+const selezionato = document.querySelector('input[name="dim"]:checked');
+if (selezionato) {
+document.getElementById("testo").style.fontSize = selezionato.value + "px";
+} else {
+alert("Seleziona un colore prima di applicarlo!");
+}
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+<style>
+  #app {
+    font-family: Arial, sans-serif;
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .input-area {
+    width: 40%;
+    padding-right: 20px;
+    border-right: 1px solid #ccc;
+  }
+
+  .output-area {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    min-height: 300px;
+    border-radius: 6px;
+  }
+
+  .entry {
+    padding: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+  }
+
+  .entry:nth-child(even) {
+    background-color: #222;
+    color: white;
+  }
+
+  .entry:nth-child(odd) {
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+
+  button {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+<div id="app">
+
+  <div class="input-area">
+    <h2>Inserisci un testo</h2>
+
+    <label>Testo:</label>
+    <input type="text" id="userInput">
+
+    <label>Colore Sfondo:</label>
+    <select id="bgPicker">
+      <option value="transparent">Default</option>
+      <option value="#ffeb3b">Giallo</option>
+      <option value="#81c784">Verde</option>
+      <option value="#64b5f6">Blu</option>
+    </select>
+
+    <label>Colore Testo:</label>
+    <input type="radio" name="fgColor" value="black" checked> Nero
+    <input type="radio" name="fgColor" value="red"> Rosso
+    <input type="radio" name="fgColor" value="blue"> Blu
+
+    <br>
+    
+    <label>Dimensione Font:</label>
+    <input type="number" id="fontSize" value="16">
+
+    <button onclick="aggiungiTesto()">Aggiungi</button>
+    <button onclick="cancellaTutto()">Cancella tutto</button>
+
+    <h3>Modifica</h3>
+    <input type="number" id="numRiga" placeholder="Riga">
+    <input type="text" id="phrase" placeholder="Nuovo testo">
+    <button onclick="modifica()">Modifica riga</button>
+
+    <h3>Elimina</h3>
+    <input type="number" id="rigaDaEliminare" placeholder="Riga">
+    <button onclick="eliminaRiga()">Elimina riga</button>
+  </div>
+
+  <div class="output-area" id="output"></div>
+
+</div>
+
+<script>
+let contatore = 1;
+const righe = {};
+
+function aggiungiTesto() {
+  const input = document.getElementById("userInput");
+  const output = document.getElementById("output");
+  const bgColor = document.getElementById("bgPicker").value;
+  const fgColor = document.querySelector('input[name="fgColor"]:checked').value;
+  const fSize = document.getElementById("fontSize").value;
+
+  if (input.value.trim() === "") return;
+
+  const div = document.createElement("div");
+  div.className = "entry";
+
+  if (bgColor !== "transparent") div.style.backgroundColor = bgColor;
+  div.style.color = fgColor;
+  div.style.fontSize = fSize + "px";
+
+  div.textContent = "[" + contatore + "] " + input.value;
+
+  output.appendChild(div);
+  righe[contatore] = div;
+
+  input.value = "";
+  contatore++;
+}
+
+function modifica() {
+  const n = document.getElementById("numRiga").value;
+  const frase = document.getElementById("phrase").value;
+
+  if (!righe[n]) return;
+
+  righe[n].textContent = "[" + n + "] " + frase;
+}
+
+function eliminaRiga() {
+  const n = document.getElementById("rigaDaEliminare").value;
+  const output = document.getElementById("output");
+
+  if (!righe[n]) return;
+
+  output.removeChild(righe[n]);
+  delete righe[n];
+
+  aggiornaNumeri();
+}
+
+function aggiornaNumeri() {
+  const output = document.getElementById("output");
+  const elementi = output.children;
+
+  contatore = 1;
+  for (let i = 0; i < elementi.length; i++) {
+    const testo = elementi[i].textContent.split("] ")[1];
+    elementi[i].textContent = "[" + contatore + "] " + testo;
+    righe[contatore] = elementi[i];
+    contatore++;
+  }
+}
+
+function cancellaTutto() {
+  const output = document.getElementById("output");
+  output.innerHTML = "";
+  contatore = 1;
+  for (let key in righe) delete righe[key];
+}
+</script>
+
+</body>
+</html>

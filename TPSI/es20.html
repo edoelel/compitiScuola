@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+<title>Esercizio</title>
+
+<style>
+body {
+    font-family: Arial;
+    display: flex;
+    padding: 20px;
+}
+
+.box1 { width: 40%; }
+.box2 { width: 60%; margin-left: 20px; border: 1px solid #ccc; padding: 10px; }
+
+.entry { padding: 6px; margin: 5px 0; }
+
+.pari { border-left: 5px solid blue; }
+.dispari { border-left: 5px solid red; }
+</style>
+</head>
+
+<body>
+
+<div class="box1">
+    <input type="text" id="txt">
+
+    <br><br>
+
+    <select id="bg">
+        <option value="yellow">Giallo</option>
+        <option value="lightblue">Blu</option>
+        <option value="lightgreen">Verde</option>
+    </select>
+
+    <br><br>
+
+    <input type="radio" name="col" value="black" checked> Nero
+    <input type="radio" name="col" value="red"> Rosso
+
+    <br><br>
+
+    <input type="number" id="size" value="16">
+
+    <br><br>
+
+    <button onclick="add()">Aggiungi</button>
+</div>
+
+<div class="box2" id="out"></div>
+
+<script>
+let cont = 0;
+
+function add() {
+
+    let testo = document.getElementById("txt").value;
+    if (testo == "") return;
+
+    let d = document.createElement("div");
+    d.className = "entry";
+
+    if (cont % 2 == 0) d.classList.add("pari");
+    else d.classList.add("dispari");
+
+    d.style.backgroundColor = document.getElementById("bg").value;
+
+    let r = document.getElementsByName("col");
+    if (r[0].checked) d.style.color = r[0].value;
+    else d.style.color = r[1].value;
+
+    d.style.fontSize = document.getElementById("size").value + "px";
+
+    d.innerText = testo;
+
+    document.getElementById("out").appendChild(d);
+
+    document.getElementById("txt").value = "";
+    cont++;
+}
+</script>
+
+</body>
+</html>

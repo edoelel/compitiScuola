@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Testo sopra immagine</title>
+
+<style>
+.container{
+    position: relative;
+    width: 600px;
+}
+
+.container img{
+    width: 100%;
+    height: auto;
+}
+
+.testo{
+    position: absolute;
+    font-size: 20px;
+    background-color: yellow;
+    padding: 5px;
+}
+
+/* ORIZZONTALE */
+.left{
+    left: 10px;
+}
+.center-x{
+    left: 50%;
+    transform: translateX(-50%);
+}
+.right{
+    right: 10px;
+}
+
+/* VERTICALE */
+.top{
+    top: 10px;
+}
+.center-y{
+    top: 50%;
+    transform: translateY(-50%);
+}
+.bottom{
+    bottom: 10px;
+}
+
+/* OPACITA */
+.op05{
+    opacity: 0.5;
+}
+.op1{
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Posiziona il testo sull'immagine</h2>
+
+<div class="container">
+    <img src="foto16.jpg    ">
+    <div id="testo" class="testo">Testo da posizionare</div>
+</div>
+
+<br>
+
+<input type="radio" name="oriz" id="left" checked> Left
+<input type="radio" name="oriz" id="centerX"> Center
+<input type="radio" name="oriz" id="right"> Right
+
+<br><br>
+
+<select id="verticale">
+    <option value="top">Top</option>
+    <option value="center-y">Center</option>
+    <option value="bottom">Bottom</option>
+</select>
+
+<br><br>
+
+<input type="checkbox" id="opacita"> Opacity 0.5
+
+<br><br>
+
+<button onclick="cambia()">Applica</button>
+
+<script>
+function cambia(){
+
+    const testo = document.getElementById("testo");
+
+    testo.className = "testo";
+
+    testo.classList.toggle("left", document.getElementById("left").checked);
+    testo.classList.toggle("center-x", document.getElementById("centerX").checked);
+    testo.classList.toggle("right", document.getElementById("right").checked);
+
+    testo.classList.toggle("top", document.getElementById("verticale").value === "top");
+    testo.classList.toggle("center-y", document.getElementById("verticale").value === "center-y");
+    testo.classList.toggle("bottom", document.getElementById("verticale").value === "bottom");
+
+    testo.classList.toggle("op05", document.getElementById("opacita").checked);
+    testo.classList.toggle("op1", !document.getElementById("opacita").checked);
+}
+</script>
+
+</body>
+</html>

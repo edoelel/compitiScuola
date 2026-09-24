@@ -1,0 +1,192 @@
+<style>
+  body-placeholder {
+    display: none;
+  }
+
+  #app {
+    font-family: Arial, sans-serif;
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .input-area {
+    width: 40%;
+    padding-right: 20px;
+    border-right: 1px solid var(--color-border-tertiary);
+  }
+
+  .output-area {
+    width: 60%;
+    padding: 10px;
+    border: 0.5px solid var(--color-border-tertiary);
+    min-height: 300px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+  }
+
+  .entry {
+    padding: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+  }
+
+  .entry:nth-child(even) {
+    background-color: #222;
+    color: white;
+  }
+
+  .entry:nth-child(odd) {
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--color-text-primary);
+  }
+
+  .btn-del {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  .btn-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  input[type=text],
+  input[type=number],
+  select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+</style>
+
+<span id="app">
+  <span class="input-area">
+    <h2 style="color: var(--color-text-primary);">Inserisci un testo</h2>
+
+    <label>Testo:</label>
+    <input type="text" id="userInput">
+
+    <label>Colore Sfondo:</label>
+    <select id="bgPicker">
+      <option value="transparent">Default (Alternato)</option>
+      <option value="#ffeb3b">Giallo</option>
+      <option value="#81c784">Verde</option>
+      <option value="#64b5f6">Blu</option>
+    </select>
+
+    <label>Colore Testo:</label>
+    <input type="radio" name="fgColor" value="black" checked> Nero
+    <input type="radio" name="fgColor" value="red"> Rosso
+    <input type="radio" name="fgColor" value="blue"> Blu
+
+    <label>Modalità Display:</label>
+    <select id="displayMode" onchange="cambiaDisplay()">
+      <option value="flex">Block (a capo)</option>
+      <option value="inline-flex">Inline (affiancati)</option>
+    </select>
+
+    <label>Dimensione Font (px):</label>
+    <input type="number" id="fontSize" value="16" min="10" max="40" style="width:80px">
+
+    <span class="btn-row">
+      <button onclick="aggiungiTesto()" style="padding:10px 20px;cursor:pointer;">Aggiungi Elemento</button>
+      <button onclick="cancellaTutto()" style="padding:10px 20px;cursor:pointer;">Cancella tutto</button>
+    </span>
+
+    <br>
+    <input type="number" id="numRiga" placeholder="Riga da modificare"
+      style="width:48%;padding:8px;box-sizing:border-box;">
+    <input type="text" id="phrase" placeholder="Nuova frase" style="width:48%;padding:8px;box-sizing:border-box;">
+    <button onclick="modifica()" style="padding:10px 20px;cursor:pointer;margin-top:8px;">Modifica riga</button>
+  </span>
+
+  <span class="output-area" id="output">
+    <h3 style="color:var(--color-text-primary);">Elementi generati:</h3>
+  </span>
+</span>
+
+<script>
+  let contatore = 1;
+  const righe = {};
+
+  function aggiungiTesto() {
+    const input = document.getElementById("userInput");
+    const output = document.getElementById("output");
+    const bgColor = document.getElementById("bgPicker").value;
+    const fgColor = document.querySelector('input[name="fgColor"]:checked').value;
+    const fSize = document.getElementById("fontSize").value;
+
+    if (input.value.trim() !== "") {
+      const span = document.createElement("span");
+      span.className = "entry";
+      if (bgColor !== "transparent") span.style.backgroundColor = bgColor;
+      span.style.color = fgColor;
+      span.style.fontSize = fSize + "px";
+
+      const testoContenuto = document.createElement("span");
+      testoContenuto.textContent = "[" + contatore + "] " + input.value;
+
+      const btnCancella = document.createElement("button");
+      btnCancella.textContent = "Elimina";
+      btnCancella.className = "btn-del";
+      const n = contatore;
+      btnCancella.onclick = function () {
+        output.removeChild(span);
+        delete righe[n];
+      };
+
+      span.appendChild(testoContenuto);
+      span.appendChild(btnCancella);
+      output.appendChild(span);
+
+      righe[contatore] = span;
+      input.value = "";
+      contatore++;
+    }
+  }
+
+  function modifica() {
+    const nriga = document.getElementById("numRiga").value;
+    const frase = document.getElementById("phrase").value;
+    righe[nriga].querySelector("span").textContent = "[" + nriga + "] " + frase;
+  }
+
+  function cambiaDisplay() {
+    const mode = document.getElementById("displayMode").value;
+    const output = document.getElementById("output");
+    output.style.display = mode;
+    output.style.flexWrap = "wrap";
+    output.style.alignItems = "flex-start";
+    output.style.alignContent = "flex-start";
+  }
+
+  function cancellaTutto() {
+    let i;
+    const output = document.getElementById("output");
+    for (i = 1; i < contatore; i++) {
+      output.removeChild(righe[i]);
+      delete righe[i];
+    }
+    contatore = 1;
+  }
+</script>

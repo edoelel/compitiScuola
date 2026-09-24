@@ -1,0 +1,46 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Cambia Font con Pulsanti</title>
+  <style>
+    #testo {
+      font-family: Arial, sans-serif;
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="testo">Questo è un testo di esempio.</div>
+
+  <button onclick="cambiaFont('Rockwell')">Rockwell</button>
+  <button onclick="cambiaFont('Comfortaa')">Comfortaa</button>
+  <button onclick="cambiaFont('Georgia')">Georgia</button>
+  <button onclick="cambiaFont('Bodoni')">Bodoni</button>
+  
+  <br>
+
+<button onclick="cambiaPeso('normal')">Normal</button>
+<button onclick="cambiaPeso('bold')">Bold</button>
+<button onclick="cambiaPeso('lighter')">Lighter</button>
+<button onclick="cambiaPeso('900')">900</button>
+<br>
+
+  <input type="number" id="dimensione" placeholder="Inserisci dimensione" />
+  <button onclick="document.getElementById('testo').style.fontSize = document.getElementById('dimensione').value + 'px';">Cambia dim</button>
+  <script>
+    function cambiaFont(fontName) {
+      document.getElementById("testo").style.fontFamily = fontName;
+    }
+  function cambiaPeso(weightValue){
+      document.getElementById("testo").style.fontWeight = weightValue}
+  </script>
+</body>
+</html>

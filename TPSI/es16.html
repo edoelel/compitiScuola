@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            .relcont{
+                position: relative;
+                width: 100%;
+                height: 300px;
+                border: 2px dashed #ccc;
+
+            }
+            .rel{
+                position: relative;
+            }
+            .abs{
+                position: absolute;
+                background-color: rgb(2, 255, 2);    
+           }
+        </style>
+        <title>Tramite 2 input numerici impostare un posizionamento RELATIVO di un elemento DIV</title>
+    </head>
+    <body>
+        <h1>Cambia la posizione relativa</h1>
+        <div class="relcont">
+        <div id="testo" class="abs">Testo da posizionare</div>
+        </div>
+        <br>
+        <input type="number" id="posizioneL" class="div">
+        <button onclick="cambiaPosizioneL()" class="div">Applica posizione Left</button>
+        <br>
+        <br>
+        <input type="number" id="posizioneT" class="div">
+        <button onclick="cambiaPosizioneT()" class="div">Applica posizione Top</button>
+    </body>
+    <script>
+        function cambiaPosizioneL(){
+            const testo = document.getElementById("testo");
+            document.getElementById("testo").style.left = document.getElementById('posizioneL').value + 'px';
+        }
+        function cambiaPosizioneT(){
+            const testo = document.getElementById("testo");
+            document.getElementById("testo").style.top = document.getElementById('posizioneT').value + 'px';
+        }
+
+    </script>
+</html>

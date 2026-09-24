@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accumula Testo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            padding: 20px;
+        }
+
+        .input-area {
+            width: 40%;
+        }
+
+        .output-area {
+            width: 60%;
+            margin-left: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 200px;
+            background-color: #f9f9f9;
+        }
+
+        .entryp {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+            background-color: red;
+        }
+
+        .entryd {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="input-area">
+        <h2>Inserisci testo</h2>
+        <input type="text" id="userInput" style="width: 100%; padding: 8px;">
+        <button onclick="aggiungiTesto()" style="margin-top: 10px; padding: 8px 12px;">Aggiungi</button>
+    </div>
+
+    <div class="output-area" id="output">
+        <h3>Testi accumulati:</h3>
+    </div>
+
+    <script>
+        let a = 0;
+        function aggiungiTesto() {
+            const input = document.getElementById("userInput");
+            const output = document.getElementById("output");
+            if(a % 2 == 0 ){
+            if (input.value.trim() !== "") {
+                const div = document.createElement("div");
+                div.className = "entryp";
+                div.textContent = input.value;
+                output.appendChild(div);
+                input.value = "";
+                a++;
+            }
+            }else{
+                if (input.value.trim() !== "") {
+                    const div = document.createElement("div");
+                    div.className = "entryd";
+                    div.textContent = input.value;
+                    output.appendChild(div);
+                    input.value = "";
+                    a++;
+            }
+        }
+        }
+    </script>
+
+</body>
+
+</html>

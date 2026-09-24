@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PA2026</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+</head>
+
+<body>
+    <h1 style="text-align: center;">PORTE APERTE 2026</h1>
+
+    <div id="map" style="height: 400px;"></div>
+
+    <div style="margin: 30px; text-align: center;">
+        <button onclick="inserisciTemperatura()">TEMPERATURA</button>
+        <button onclick="inserisciIdrometri()">IDROMETRI</button>
+        <button onclick="pulisciMappa()">PULISCI MAPPA</button>
+    </div>
+
+    <script>
+        console.log("Inizio codice javascript")
+
+        // Inserire una mappa
+        console.log("Inserire una mappa")
+        var map = L.map('map').setView([45.078869, 7.6558], 11);
+
+        // Aggiungere una mappa di base
+        console.log("Aggiungere una mappa di base")
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Aggiungere il layer della temperatura
+        console.log("Aggiungere il layer della temperatura")
+
+        // Definiamo l'url del MapServer per la temperatura
+        var urlMapServerTemperatura = "https://webgis.arpa.piemonte.it/server/rest/services/meteorologia_clima/TR_Temperatura/MapServer"
+
+        // Creiamo il layer
+        var layerTemperatura = L.esri.dynamicMapLayer({
+            url: urlMapServerTemperatura
+        })
+
+        // Funzione per aggiungere il layer alla mappa
+        function inserisciTemperatura() {
+            console.log("inserisciTemperatura")
+            // Aggiungiamo il layer alla mappa
+            layerTemperatura.addTo(map);
+        }
+
+        // Funzione per pulire la mappa
+        function pulisciMappa() {
+            console.log("pulisciMappa")
+            // Pulisci la mappa
+            map.removeLayer(layerTemperatura);
+            map.removeLayer(layerIdrometri);
+        }
+
+        // Aggiungere il layer degli idrometri
+        console.log("Aggiungere il layer degli idrometri")
+
+        // Definiamo l'url del MapServer per gli idrometri
+        var urlMapServerIdrometri = "https://webgis.arpa.piemonte.it/server/rest/services/meteorologia_clima/TR_idrometri/MapServer"
+
+        // Creiamo il layer
+        var layerIdrometri = L.esri.dynamicMapLayer({
+            url: urlMapServerIdrometri
+        })
+
+        // Funzione per aggiungere il layer alla mappa
+        function inserisciIdrometri() {
+            console.log("inserisciIdrometri")
+            // Aggiungiamo il layer alla mappa
+            layerIdrometri.addTo(map);
+        }
+
+        console.log("Fine codice javascript")
+    </script>
+
+</body>

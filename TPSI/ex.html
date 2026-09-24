@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        padding: 20px;
+    }
+
+    .output-area {
+        width: 60%;
+        margin-left: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        min-height: 200px;
+        background-color: #f9f9f9;
+    }
+</style>
+
+<body>
+    <div>
+        <input type="text" id="txt" placeholder="Inserisci una frase">
+        <button onclick="add()">Aggiungi la frase</button>
+        <select id="dimensioneTxt">
+            <option value="">--Dimensione--</option>
+            <option value="12">12 px</option>
+            <option value="16">16 px</option>
+            <option value="24">24 px</option>
+        </select>
+    </div>
+    <div id="box" class="output-area"> </div>
+    <script>
+        function add() {
+            let testo = document.getElementById("txt").value;
+            let box = document.getElementById("box");
+            let d = document.createElement("div");
+            d.style.fontSize = document.getElementById("dimensioneTxt").value + "px";
+            d.innerText = testo;
+            box.appendChild(d);
+            document.getElementById("txt").value = "";
+        }
+
+    </script>
+</body>
+
+</html>
