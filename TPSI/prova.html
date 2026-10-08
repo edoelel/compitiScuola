@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<style>
+
+.pannello {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  right: -250px; /* Nascosto fuori dallo schermo a destra */
+  background-color: #f1f1f1;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+  transition: 0.3s; /* Effetto di scorrimento fluido */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.pannello.aperto {
+  right: 0;
+}
+
+
+
+</style>
+<body>
+<!-- Pulsante per aprire il pannello -->
+<button onclick="apriPannello()">Apri a lato</button>
+
+<!-- Il pannello laterale -->
+<div id="pannelloLaterale" class="pannello">
+  <button class="chiudi-btn" onclick="chiudiPannello()">&times;</button>
+  <h2>Contenuto a lato</h2>
+  <p>Qui puoi inserire il testo o i link che vuoi mostrare.</p>
+</div>
+
+
+
+</body>
+<script>
+function apriPannello() {
+  document.getElementById("pannelloLaterale").classList.add("aperto");
+}
+
+function chiudiPannello() {
+  document.getElementById("pannelloLaterale").classList.remove("aperto");
+}  
+</script>
